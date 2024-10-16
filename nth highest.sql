@@ -6,6 +6,21 @@ WHERE N - 1 = (
     WHERE t2.column_name > t1.column_name
 );
 
+-- method 2
+SELECT column_name, MAX(column_name) AS highest_value
+FROM table_name
+WHERE column_name < (
+    SELECT MAX(column_name)
+    FROM table_name
+    WHERE column_name < (
+        SELECT MAX(column_name)
+        FROM table_name
+        WHERE column_name < (
+            -- Repeat the subquery N-2 times for the N-th highest element
+        )
+    )
+);
+
 
 /*
 column_name: The column where you want to find the N-th highest value.

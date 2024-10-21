@@ -32,6 +32,10 @@ SELECT a.column1, b.column1
 FROM table_name a, table_name b
 WHERE a.id = b.parent_id;
 
+-- LATERAL JOIN
+SELECT column1, column2, subquery_result.column3
+FROM table_name
+CROSS APPLY (SELECT column3 FROM another_table WHERE condition) AS subquery_result;
 
 
 
